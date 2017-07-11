@@ -1,0 +1,142 @@
+﻿@model ePlanner.Models.Order
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reserve Your Tickets - ePlanner</title>    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Events, Tour, " />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+
+    <link href="~/Content/Home/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Home/zoomslider.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Home/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Home/component.css" />
+    <script type="text/javascript" src="~/Scripts/Home/modernizr-2.6.2.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.js"></script>
+
+    <!--/web-fonts-->
+    <link href="~/Content/Home/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+    <!--//web-fonts-->
+</head>
+
+<Style>
+    .single-left2 h1 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 45px;
+    }
+
+    .single-left3 ul {
+        margin-left: 35px;
+    }
+
+    .myLabel{
+        color:darkred;
+        font-size:15px;
+        margin-right:0px;
+        float:right;
+    }
+</Style>
+<body>
+       <div class="col-lg-11" style="margin-top:100px;"><p style="text-align:right">Go Back to <a href="Index">Home</a></p></div>
+    <div class="clearfix"></div>   
+    <div class="col-lg-1"></div>
+        <div class="col-lg-6" style="box-shadow: 1px 0px 0px 0px black">
+            <div>
+                <div class="modal-header">
+                    <h4 class="modal-title" style="margin-top:-25px; font-size:25px; color:white;">Reserve your tickets</h4>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("SubmitOrder", "Home"))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name)
+                            @Html.ValidationMessage("Error", new { @class = "myLabel" })
+                            <a href="Index">@Html.ValidationMessage("Reserved", new { @class = "myLabel" })</a>
+                            @Html.ValidationMessageFor(model => model.Name, null, new { @class = "myLabel", id = "nameErr" })
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "name", required="required"})
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address)
+                            @Html.ValidationMessageFor(model => model.Address, null, new { @class = "myLabel", id = "addressErr" })
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", id = "address", required = "required" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Phone)
+                            @Html.ValidationMessageFor(model => model.Phone, null, new { @class = "myLabel", id = "phoneErr" })
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", id = "phone", required = "required" })
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label>Number of Tickets</label>
+                            <select name="tickets" id="ddlViewBy" onchange="aa()" class="form-control">
+                                <option value="1" selected="selected">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+
+                            <script>
+                                        function aa() {
+                                            var e = document.getElementById("ddlViewBy");
+                                            var strUser = e.options[e.selectedIndex].value;
+                                            document.getElementById("price").value = parseInt(strUser) * @Session["price"];
+                                        }
+                            </script>
+
+                                    <div class="form-group col-lg-6">
+                                        <label>Price</label>
+                                        <input type="email" id="price" class="form-control" disabled="disabled" value="@Session["price"]">
+                                    </div>
+
+                                    <input type="hidden" name="EventId" value="@ViewBag.Id" />
+                                    <button aria-hidden="false" type="submit" class="btn btn-default">Submit</button>
+                    }
+                </div>
+            </div>
+        </div>
+
+    <div class="col-lg-4">
+        <div>
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-top:-25px; font-size:25px; color:white; text-align: center">Instructions</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Refund Policy will be according to the Terms and Conditions of the Planner.</li>
+                    <li>Make sure about the Authentication of the Planner before Buying tickets.</li>
+                    <li><a href="~/Home/Index">ePlanner.com</a> is not responsible, in case of any fraud.</li>
+                    <li>Contact to the Planner to get tickets before the happening of the Event.</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+        <script src="~/Scripts/Home/jquery-1.11.1.min.js"></script>
+        <script src="~/Scripts/Home/jquery.light-carousel.js"></script>
+        <script>
+					        $('.sample1').lightCarousel();
+        </script>
+        <link href="~/Content/Home/light-carousel.css" rel="stylesheet" type="text/css">
+        <script src="~/Scripts/Home/bootstrap.js"></script>
+
+    </body>
+</html>

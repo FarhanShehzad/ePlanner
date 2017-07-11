@@ -1,0 +1,252 @@
+﻿@model List<ePlanner.Models.Event>
+
+@{
+    var items = (List<ePlanner.Models.Event>)ViewBag.Events;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Explore Events - ePlanner</title>    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Events, Tour, " />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+
+    <link href="~/Content/Home/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Home/zoomslider.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Home/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Home/component.css" />
+    <script type="text/javascript" src="~/Scripts/Home/modernizr-2.6.2.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/mvc/5.0/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.js"></script>
+
+    <!--/web-fonts-->
+    <link href="~/Content/Home/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+    <!--//web-fonts-->
+</head>
+
+<body>
+    <!--/banner-section-->
+    <div id="demo-1" class="banner-inner">
+        <div class="banner-inner-dott">
+            <div class="header-top">
+                <div class="search-box">
+                    <ul>
+                        <li style="padding-left:15px; padding-right:15px;"><a href="Login" target="_blank">Plan Your Event</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <!--banner-info-->
+            <div class="banner-info">
+                <h1 style="font-size:65px;"><a href="Index">e<span class="logo-sub">Planner</span> </a></h1>
+                <h2 style="margin-top:-9px; font-size:22px;"><span>WE ARE BRINGING PEOPLE TOGETHER</span></h2>
+            </div>
+            <!--//banner-info-->
+        </div>
+    </div>
+    <!--//banner-section-->
+    <!--/breadcrumb-->
+    <div class="service-breadcrumb w3-agile">
+        <div class="container">
+            <div class="wthree_service_breadcrumb_left">
+                <ul>
+                    <li><a href="Index">Home</a> <i>|</i></li>
+                    <li>Explore Events</li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!--//breadcrumb-->
+
+    <div class="tips w3l">
+        <div class="container">
+            <div class="col-md-9 tips-info">
+                @{
+                    if (Model == null)
+                    {
+                        <div class="news-grid">
+                            <h3 style="text-align:center;">Sorry, No Events Found for this Catagory.</h3>
+                            <p style="text-align:center; color:darkred;">Go Back to <a href="Index">Home</a></p>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (var myEvent in Model)
+                        {
+                            <div class="news-grid">
+                                <div class="news-img up">
+                                    <a href="~/Home/Event?id=@myEvent.Id"> <img src="~/images/Events/@myEvent.Image" width="270" height="160" alt="@myEvent.Title"></a>
+                                    <span class="price1">$ @myEvent.PriceOfTicket</span>
+                                </div>
+                                <div class="news-text coming">
+                                    <h3 style="font-size:30px; margin-left: -15px;"><a href="~/Home/Event?id=@myEvent.Id">@myEvent.Title</a></h3>
+                                </div>
+                                <div class="single-left2">
+                                    <ul class="com" style="border-top:0px; border-bottom:0px;">
+                                        <li>
+                                            <span class="glyphicon glyphicon-copyright-mark" style="font-size:20px; margin-right: -15px;" aria-hidden="true"></span>
+                                            <a href="#">@myEvent.Catagory</a>
+                                        </li>
+                                        <li>
+                                            <span class="glyphicon glyphicon-calendar" style="font-size:20px; margin-right: -15px;" aria-hidden="true"></span>
+                                            <a href="#">@myEvent.Date.ToLongDateString()</a>
+                                        </li>
+                                        @{
+                                            string myVenue1 = myEvent.Venue;
+                                        }
+                                        @if (myVenue1 == "Online")
+                                        {
+                                            <li>
+                                                <span class="glyphicon glyphicon-record" style="font-size:20px; margin-right: -15px;" aria-hidden="true"></span>
+                                                <a href="#">@myEvent.Venue</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <span class="glyphicon glyphicon-map-marker" style="font-size:20px; margin-right: -15px;" aria-hidden="true"></span>
+                                                <a href="#">@myEvent.City</a>
+                                            </li>
+                                        }
+                                    </ul>
+
+                                    <a style="margin-left:15px;" href="~/Home/Event?id=@myEvent.Id" class="read hvr-shutter-in-horizontal">Get Details & Tickets</a>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                                                }
+
+                                            }
+                }
+            </div>
+            <div class="col-md-3 advice-right w3-agile">
+                <div class="blo-top">
+                    <div class="tech-btm">
+                        <h4>Sign up to our newsletter</h4>
+                        <p>We Promise, we don't spam.</p>
+                        <div class="name">
+                            <form action="Subscribe" method="post">
+                                <input type="text" name="email" class="email" placeholder="Enter your email address" required="">
+                                <input type="submit" value="Subscribe">
+                            </form>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="related-posts">
+                    <h3>Other Events</h3>
+                    @{
+                        int count = 5;
+                        foreach (var item in items)
+                        {
+                            <div class="related-post">
+                                <div class="related-post-left">
+                                    <a href="~/Home/Event?id=@item.Id"><img src="~/images/Events/@item.Image"  alt="@item.Title" class="img-responsive"></a>
+                                </div>
+                                <div class="related-post-right" style="margin-top:-6px;">
+                                    <h4><a href="Event?id=@item.Id">@item.Title</a></h4>
+                                    <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span><a href="#">@item.Catagory</a><br />
+                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><a href="#">@item.Date.ToShortDateString()</a><br />
+                                    @{
+                                        string myVenue1 = item.Venue;
+                                    }
+                                    @if (myVenue1 == "Online")
+                                    {
+                                        <span class="glyphicon glyphicon-record" aria-hidden="true"></span><a href="#">@item.Venue</a>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><a href="#">@item.City</a>
+                                    }
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                                            count++;
+                                            if (count == 5)
+                                            {
+                                                break;
+                                            }
+                                        }
+                    }
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".5s">
+                    <h3>About Us</h3>
+                    <p>ePlanner is the world's largest event technology platform. We build the technology to allow anyone to create, share, find and attend new things to do that fuel their passions and enrich their lives. Music festivals, venues, marathons, conferences, hackathons, air guitar contests, political rallies, fundraisers, gaming competitions — you name it, we power it. Our mission? To bring the world together through live experiences.</span></p>
+                </div>
+                <div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".6s">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Old Anarkali, <span>Lahore.</span></li>
+                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="#">info@ePlanner.com</a></li>
+                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>090078601</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".7s">
+                    <h3>Explore Events</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="~/Home/Catagory?cat=Music">Music</a></li>
+                        <li><a href="~/Home/Catagory?cat=Food">Food & Drink</a></li>
+                        <li>
+                            <a href="~/Home/Catagory?cat=Classes">Classes</a>
+                        </li>
+                        <li><a href="~/Home/Catagory?cat=Arts">Arts</a></li>
+                        <li><a href="~/Home/Catagory?cat=Parties">Parties</a></li>
+                        <li><a href="~/Home/Catagory?cat=Networking">Networking & Meetups</a></li>
+                        <li><a href="~/Home/Catagory?cat=Tourism">Tourism</a></li>
+                        <li>
+                            <a href="~/Home/Catagory?cat=Sports">Sports and Wellness</a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".8s">
+                    <h3>Connect Us on</h3>
+
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
+                <h2><a href="index.html">ePlanner <span>Manage Events at your Own</span></a></h2>
+            </div>
+            <div class="copy-right animated wow slideInUp" data-wow-delay=".5s">
+                <p>&copy 2017 ePlanner. All rights reserved</p>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/Home/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Home/jquery.flexisel.js"></script>
+    <script src="~/Scripts/Home/bootstrap.js"></script>
+
+</body>
+</html>
