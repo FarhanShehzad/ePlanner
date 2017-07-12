@@ -159,9 +159,13 @@
         float: right;
     }
 </style>
+<script>
+    function func() {
+        document.getElementById("loading").style.visibility = 'hidden';
+    }
+</script>
 
-
-<body>
+<body onload="func()">
     <section id="container">
         <!--header start-->
         <header class="header fixed-top clearfix">
@@ -252,6 +256,9 @@
             <section class="wrapper">
 
                     <div class="table-agile-info" style="overflow:hidden; min-height:470px;">
+                        <div hidden="hidden" class="col-lg-4 col-lg-offset-6 center-block" id="loading" style="margin-bottom:3px;">
+                            <img src="~/images/loading_small.gif" width="15" height="15" />
+                        </div>
                         <div class="clearfix"></div>
                         <div class="panel panel-default">
 
@@ -354,9 +361,7 @@
                                                                 <button class="center-block" style="width:30px;" type="button" id="@item.Id" onclick="Verify(this.id)"><i class="fa fa-check text-success text-active"></i></button>
                                                                 <button class="center-block" style="width:30px;" type="button" id="@item.Id" onclick="Delete(this)"><i class="fa fa-times text-danger text"></i></button>
                                                             </div>
-                                                            <div hidden="hidden" id="def+@item.Id">
-                                                                <img src="~/images/loading_small.gif" width="15" height="15" />
-                                                            </div>
+
 
                                                         }
                                                     </td>
@@ -380,21 +385,20 @@
                 <script>
                                                                 function Verify(id) {
                                                                     document.getElementById("abc+" + id).style.visibility = 'hidden';
-                                                                    document.getElementById("def+" + id).style.visibility = 'visible';
+                                                                    document.getElementById("loading").style.visibility = 'visible';
                                                                     $.getJSON("/Planner/Verify?id=" + id, function (msg) {
-                                                                        document.getElementById("def+" + id).style.visibility = 'hidden';
+                                                                        document.getElementById("loading").style.visibility = 'hidden';
                                                                         document.getElementById("abc+" + id).innerHTML = 'Verified';
                                                                         document.getElementById("abc+" + id).style.visibility = 'visible';
-
                                                                     });
                                                                 }
 
                                                                 function Delete(r) {
                                                                     var id = r.id;
                                                                     document.getElementById("abc+" + id).style.visibility = 'hidden';
-                                                                    document.getElementById("def+" + id).style.visibility = 'visible';
+                                                                    document.getElementById("loading").style.visibility = 'visible';
                                                                     $.getJSON("/Planner/Delete?id=" + id, function (msg) {
-                                                                        document.getElementById("def+" + id).style.visibility = 'hidden';
+                                                                        document.getElementById("loading").style.visibility = 'hidden';
                                                                         document.getElementById("tr+" + id).style.visibility = 'hidden';
                                                                     });
                                                                 }

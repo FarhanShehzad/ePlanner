@@ -12,6 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="keywords" content="ePlanner, Sign Up form, Manage events at your own, bringing people together, " />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //Meta-Tags -->
     <!-- Custom-Styleheet-Links -->
@@ -22,6 +25,11 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" type="text/css" media="all">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700" type="text/css" media="all">
     <!-- //Fonts -->
+
+
+
+
+
 
 </head>
 <!-- //Head -->
@@ -36,11 +44,15 @@
     }
 </style>
 
-
+<script>
+    function func() {
+        document.getElementById("loading").style.visibility = 'hidden';
+    }
+</script>
 
 
 <!-- Body -->
-<body>
+<body onload="func()">
 
     <h1 class="w3layouts agileits">Login to Proceed</h1>
 
@@ -60,7 +72,7 @@
             <section>
                 <div id="container_demo">
                     <div id="wrapper">
-                        <div id="login" class="animate w3layouts agileits form">
+                        <div id="login" class="animate w3layouts agileits form" style="max-height:578.55px;">
                             <h2 class="w3layouts agileits">Sign In</h2>
                             @Html.ValidationMessage("Pass", new { @class = "myLabel" })
                             <a href="SignUp">
@@ -69,6 +81,7 @@
                             @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { autocomplete = "on" }))
                             {
                                 @Html.LabelFor(model => model.Email)
+                                <br />
                                 @Html.ValidationMessageFor(model => model.Email, null, new { @class = "myLabel" })
                                 @Html.TextBoxFor(model => model.Email)
 
@@ -77,6 +90,7 @@
                                 @Html.PasswordFor(model => model.Password, new { Class = "phone w3layouts agileits" })
 
                                 <div class="send-button w3layouts agileits">
+                                    <p><a href="#" data-toggle="modal" data-target="#myModal">Forgot Password?</a></p>
                                     <input type="submit" value="SIGN IN">
                                     <div class="clear"></div>
                                 </div>
@@ -105,10 +119,67 @@
 
     </div>
 
+
     <div class="footer w3layouts agileits">
         <p> &copy;2017 ePlanner. All Rights Reserved</p>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header"  style="background-color:#5BC0DE; font-size:20px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Get a New Password</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form>
+                        <div class="col-lg-7">
+                            <label>Enter Email: </label>
+                            <input id="forgot" type="email" name="forgot" />
+                        </div>
+
+                        <div class="col-lg-5" id="loading">
+                            <img src="~/images/loading_small.gif" width="15" height="15" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="ErrorMsg" style="color:darkred; font-size:15px; margin-top:5px;"></div>
+                    </form>
+                    <span class="clearfix"></span>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="mybtn" type="submit" class="btn btn-default" onclick="Mail(this.id)">Send</button>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            function Mail(id) {
+                document.getElementById("mybtn").disabled = true;
+                document.getElementById("loading").style.visibility = 'visible';
+                document.getElementById("ErrorMsg").style.visibility = 'hidden';
+                //document.getElementById("def+" + id).style.visibility = 'visible';
+                var email = document.getElementById("forgot").value;
+                $.getJSON("/Home/SendMail?e=" + email, function (msg) {
+                    document.getElementById("ErrorMsg").innerHTML = msg;
+                    document.getElementById("loading").style.visibility = 'hidden';
+                    document.getElementById("ErrorMsg").style.visibility = 'visible';
+                    if(msg === "This Email is not registered."){
+                        document.getElementById("mybtn").disabled = false;
+                    }
+
+                    //document.getElementById("def+" + id).style.visibility = 'hidden';
+                    //document.getElementById("abc+" + id).innerHTML = 'Verified';
+                    //document.getElementById("abc+" + id).style.visibility = 'visible';
+
+                });
+            }
+        </script>
+    </div>
 </body>
 <!-- //Body -->
 

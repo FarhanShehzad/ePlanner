@@ -28,20 +28,11 @@
     <script src="~/Scripts/Planner/jquery2.0.3.min.js"></script>
     <script src="~/Scripts/Planner/raphael-min.js"></script>
     <script src="~/Scripts/Planner/morris.js"></script>
-    <script src="~/Scripts/Planner/tinymce/tinymce.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="~/Scripts/Planner/Timepicker/src/wickedpicker.js"></script>
-
-    <script>
-        tinymce.init({
-            selector: '#mytextarea',
-            height: "250",
-            plugins: "wordcount"
-            
-        });
-    </script>
+    <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
     <!--/web-fonts-->
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
@@ -288,10 +279,12 @@ h2{
                 <div class="form-group col-lg-12">
                     @Html.LabelFor(model => model.Description)
                     @Html.ValidationMessageFor(model => model.Description, null, new { @class = "myError" })
-                    @Html.TextAreaFor(model => model.Description, new { @id = "mytextarea", onkeyup = "Count1()" })
+                    @Html.TextAreaFor(model => model.Description, new { name = "editor1", @id = "editor1", onkeyup = "Count1()" })
                     <div class="col-lg-9 help-block">Tip: Properly indent and format description to make it attractive.</div>
                 </div>
-
+                <script>
+                    CKEDITOR.replace('editor1');
+                </script>
                 <div class="clearfix"></div>
             </div>
         </section>
