@@ -1,0 +1,365 @@
+﻿@model List<ePlanner.Models.Event>
+<!DOCTYPE html>
+<html>
+<head>
+<title>ePlanner | Bringing People together</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Catchy Carz Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="~/Content/Home/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="~/Content/Home/zoomslider.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/Home/style.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/Home/component.css" />
+<script type="text/javascript" src="~/Scripts/Home/modernizr-2.6.2.min.js"></script>
+<!--/web-fonts-->
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,300,300italic,700,400italic' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Wallpoet' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+</head>
+<body>
+<!--/banner-section-->
+	<div id="demo-1" data-zs-src='["../images/Home/2.jpg", "../images/Home/1.jpg", "../images/Home/3.jpg"]' data-zs-overlay="dots">
+		<div class="demo-inner-content">
+		   <div class="header-top">
+		             <div class="search-box">
+					    <ul>
+                            <li style="padding-left:15px; padding-right:15px;"><a href="~/Home/SignUp">Sign Up</a></li>
+							<li><button id="showRight" class="navig"><a href="~/Home/Login">Login</a></button>
+						<!--Navigation from Right To Left-->
+						    </li>
+                            <li style="padding-left:15px; padding-right:15px;"><a href="~/Home/Login">Plan Your Event</a></li>
+
+						</ul>
+						
+					</div>
+				
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+		    <!--banner-info-->
+			<div class="banner-info">
+			  <h1 style="font-size:83px;"><a href="Index">e<span class="logo-sub">Planner</span> </a></h1>
+			    <h2 style="margin-top:-9px;"><span>WE ARE BRINGING PEOPLE TOGETHER</span></h2>
+				<p style="margin-top:25px; font-size:20px;">Find your Next Experience!</p>
+			       <form action="~/Home/Search" method="post" style="margin-top:2px;">
+					<div class="search-two">
+
+                    <input id="country" name="EventName" class="frm-field required" 
+    style="padding: 10px 10px;
+    width: 100%;
+    font-weight: normal;
+    background: white;
+    border: none;
+    color: #848484;
+    outline: none;
+    font-size: 14px;
+    margin-bottom: 0; " placeholder="Search Events">
+
+				</div>
+				<div class="section_room">
+                    <input id="country" name="EventCity" class="frm-field required"
+    style="padding: 10px 46px;
+    width: 100%;
+    font-weight: normal;
+    background: none;
+    border: none;
+    color: #848484;
+    outline: none;
+    font-size: 14px;
+    margin-bottom: 0;
+    background: url(../../images/Home/place1.png) no-repeat 5% center #ffffff;
+    background-size: 18px 20px;" placeholder="City or Location">
+
+				</div>
+
+					<input style="max-height:40px;" type="submit" value="Find">
+					<div class="clearfix"></div>
+				</form>
+			</div>
+				<!--//banner-info-->	
+		</div>
+</div>
+
+<!--//banner-section-->
+
+    <!--/featured_section-->
+        <div class="container" style="margin-top:50px">
+            <h3 class="tittle"style="margin-bottom:-40px;">Explore New Events</h3>
+            <div class="inner_tabs">
+                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                            <div class="section__content clearfix">
+                                <!-- /card1 -->
+                                @{ int count = 0; }
+                                @foreach (var item in Model)
+                                {
+                                <div class="col-lg-4" style="max-width:360px; margin:10px; float:left; border: 1px solid blue; padding:0px;">
+                                    <div>
+                                        <a href="~/Home/Event?id=@item.Id" target="_blank" style="margin-bottom: 20px;">
+                                            <img src="~/images/Events/@item.Image" style="width:100%;" alt="@item.Title" class="img-responsive" />
+                                        </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div style="margin:5px; margin-top:10px;">
+                                        <span style="font-size:18px; margin:5px auto;"><a href="~/Home/Event?id=@item.Id" target="_blank" color="black">@item.Title</a></span>
+                                        <span style="text-align:right; float:right;" class="pull-right">$@item.PriceOfTicket</span>
+                                        <br />
+                                        <div class="clearfix"></div>
+                                        <div margin>
+                                            <ul class="list-inline center-block text-center" style="margin-top:15px; margin-bottom:15px; border-top:0px; border-bottom:0px;">
+                                                <li>
+                                                    <span class="glyphicon glyphicon-copyright-mark" style="font-size:15px;" aria-hidden="true"></span>
+                                                    <a href="#">@item.Catagory</a>
+                                                </li>
+                                                <li>
+                                                    <span class="glyphicon glyphicon-calendar" style="font-size:15px;" aria-hidden="true"></span>
+                                                    <a href="#">@item.Date.ToShortDateString()</a>
+                                                </li>
+                                                @{
+                                                    String myVenue1 = item.Venue;
+                                                }
+                                                @if (myVenue1 == "Online")
+                                                {
+                                                    <li>
+                                                        <span class="glyphicon glyphicon-record" style="font-size:15px;" aria-hidden="true"></span>
+                                                        <a href="#">@item.Venue</a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <span class="glyphicon glyphicon-map-marker" style="font-size:15px;" aria-hidden="true"></span>
+                                                        <a href="#">@item.City</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="center-block">
+                                            <div class="col-lg-1"></div>
+                                            <a class="read hvr-shutter-in-horizontal col-lg-10 text-center" href="~/Home/Event?id=@item.Id">Get tickets</a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div  style="margin-bottom:20px;"></div>
+                                </div>
+
+                                                    count++;
+                                                    if(count == 6)
+                                                    {
+                                                        break;
+                                                    }
+                                                }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                <!-- //card1 -->
+    <!--//featured_section-->
+
+                                <div class="clearfix"></div>
+	<!-- /slider1 -->
+    <h3 class="tittle" style="margin-top:20px;">Browse by Catagories</h3>
+			<div class="slider1">
+		<div class="arrival-grids">			 
+			 <ul id="flexiselDemo1">
+				 <li>
+					 <a href="~/Home/Catagory?cat=Music"><img src="~/images/Home/ma2.jpg" alt=""/>
+					  <div class="caption">
+							<h3><a href="~/Home/Catagory?cat=Music">Music</a></h3>
+							<span>Cencerts, Music Festivals and Dance Parties</span>
+						</div>
+					 </a>					
+				 </li>
+				 <li>
+					 <a href="~/Home/Catagory?cat=Food"><img src="~/images/Home/ma1.jpg" alt=""/>
+					 <div class="caption">
+							<h3><a href="~/Home/Catagory?cat=Food">Food & Drink</a></h3>
+							<span>Dinner Parties, tasting and big-time parties</span>
+							
+						</div>
+					 </a>
+				 </li>
+				 <li>
+					 <a href="~/Home/Catagory?cat=Classes"><img src="~/images/Home/ma4.jpg" alt=""/>
+					  <div class="caption">
+							<h3><a href="~/Home/Catagory?cat=Classes">Classes</a></h3>
+							<span>Enlightening Seminars, technical workshops and fitness classes</span>
+							
+						</div>
+					 </a>
+				 </li>
+				 <li>
+					 <a href="~/Home/Catagory?cat=Arts"><img src="~/images/Home/ma5.jpg" alt=""/>
+					    <div class="caption">
+							<h3><a href="~/Home/Catagory?cat=Arts">Arts</a></h3>
+						<span>Plays, Comedy Nights, art exhibitions & film festivals</span>
+							
+						</div>
+					 </a>
+				 </li>
+				 <li>
+					 <a href="~/Home/Catagory?cat=Parties"><img src="~/images/Home/ma6.jpg" alt=""/>
+					    <div class="caption">
+							<h3><a href="~/Home/Catagory?cat=Parties">Parties</a></h3>
+							<span>Casual happy hours, singles nights and all night celebrations</span>
+							
+						</div>
+					 </a>
+				 </li>
+				 <li>
+					 <a href="~/Home/Catagory?cat=Sports"><img src="~/images/Home/ab4.jpg" alt="" class="img-responsive"/>
+					 <div class="caption">
+							<h3><a href="~/Home/Catagory?cat=Sports">Sports and Wellness</a></h3>
+							<span>Obstacles races, drop-in yoga classes and the big game</span>
+							
+						</div>
+					 </a>
+				 </li>
+				  <li>
+					 <a href="~/Home/Catagory?cat=Networking"><img src="~/images/Home/ma8.jpg" alt=""/>
+					    <div class="caption">
+							<h3><a href="~/Home/Catagory?cat=Networking">Networking & Meetups</a></h3>
+							<span>Bussiness mixtures, hobby meetups and panel discussions</span>
+					    </div>
+					 </a>
+				 </li>
+              <li>
+                  <a href="~/Home/Catagory?cat=Tourism">
+                      <img src="~/images/Home/ma9.jpg" alt="" />
+                      <div class="caption">
+                          <h3><a href="~/Home/Catagory?cat=Tourism">Tourism</a></h3>
+                          <span>All about tours and adventures</span>
+                      </div>
+                  </a>
+              </li>
+				</ul>
+		  </div>
+	  </div>
+	<!-- //slider -->
+    <br /><br />
+		<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="footer-grids">
+				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".5s">
+					<h3>About Us</h3>
+					<p>ePlanner is the world's largest event technology platform. We build the technology to allow anyone to create, share, find and attend new things to do that fuel their passions and enrich their lives. Music festivals, venues, marathons, conferences, hackathons, air guitar contests, political rallies, fundraisers, gaming competitions — you name it, we power it. Our mission? To bring the world together through live experiences.</span></p>
+				</div>
+				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".6s">
+					<h3>Contact Info</h3>
+					<ul>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Old Anarkali, <span>Lahore.</span></li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="#">info@ePlanner.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>090078601</li>
+					</ul>
+				</div>
+				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".7s">
+					<h3>Explore Events</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="~/Home/Catagory?cat=Music">Music</a></li>
+                        <li><a href="~/Home/Catagory?cat=Food">Food & Drink</a></li>
+                        <li>
+                            <a href="~/Home/Catagory?cat=Classes">Classes</a>
+                        </li>
+                        <li><a href="~/Home/Catagory?cat=Arts">Arts</a></li>
+                        <li><a href="~/Home/Catagory?cat=Parties">Parties</a></li>
+                        <li><a href="~/Home/Catagory?cat=Networking">Networking & Meetups</a></li>
+                        <li><a href="~/Home/Catagory?cat=Tourism">Tourism</a></li>
+                        <li>
+                            <a href="~/Home/Catagory?cat=Sports">Sports and Wellness</a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"> </div>
+				</div>
+				<div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".8s">
+					<h3>Connect Us on</h3>
+
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
+				<h2><a href="index.html">ePlanner <span>Manage Events at your Own</span></a></h2>
+			</div>
+			<div class="copy-right animated wow slideInUp" data-wow-delay=".5s">
+				<p>&copy 2017 ePlanner. All rights reserved</p>
+			</div>
+		</div>
+	</div>
+
+<script src="~/Scripts/Home/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Home/jquery.zoomslider.min.js"></script>
+		<script type="text/javascript">
+				 $(window).load(function() {			
+				  $("#flexiselDemo").flexisel({
+					visibleItems:1,
+					animationSpeed: 1000,
+					autoPlay: true,
+					autoPlaySpeed:1000,    		
+					pauseOnHover:true,
+					enableResponsiveBreakpoints: true,
+					responsiveBreakpoints: { 
+						portrait: { 
+							changePoint:480,
+							visibleItems: 1
+						}, 
+						landscape: { 
+							changePoint:640,
+							visibleItems: 1
+						},
+						tablet: { 
+							changePoint:768,
+							visibleItems: 1
+						}
+					}
+				});
+				});
+				</script>
+						<script type="text/javascript">
+				 $(window).load(function() {			
+				  $("#flexiselDemo1").flexisel({
+					visibleItems: 4,
+					animationSpeed: 1000,
+					autoPlay: true,
+					autoPlaySpeed: 3000,    		
+					pauseOnHover:true,
+					enableResponsiveBreakpoints: true,
+					responsiveBreakpoints: { 
+						portrait: { 
+							changePoint:480,
+							visibleItems: 1
+						}, 
+						landscape: { 
+							changePoint:640,
+							visibleItems: 2
+						},
+						tablet: { 
+							changePoint:768,
+							visibleItems: 3
+						}
+					}
+				});
+				});
+				</script>
+					<script type="text/javascript" src="~/Scripts/Home/jquery.flexisel.js"></script>
+<script src="~/Scripts/Home/bootstrap.js"></script>
+ 
+
+</body>
+</html>
