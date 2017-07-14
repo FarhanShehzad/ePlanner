@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="~/Content/Planner/monthly.css">
     <!-- //calendar -->
     <!-- //font-awesome icons -->
-
+    <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
     <script src="~/Scripts/Planner/jquery2.0.3.min.js"></script>
     <script src="~/Scripts/Planner/raphael-min.js"></script>
     <script src="~/Scripts/Planner/morris.js"></script>
@@ -292,9 +292,12 @@
                                     <div class="form-group col-lg-12">
                                         @Html.LabelFor(model => model.Description)
                                         @Html.ValidationMessageFor(model => model.Description, null, new { @class = "myError" })
-                                        @Html.TextAreaFor(model => model.Description, new { @id = "mytextarea", onkeyup = "Count1()" })
+                                        @Html.TextAreaFor(model => model.Description, new { name = "editor1", @id = "editor1", onkeyup = "Count1()" })
                                         <div class="col-lg-9 help-block">Tip: Properly indent and format description to make it attractive.</div>
                                     </div>
+		<script>
+                    CKEDITOR.replace('editor1');
+                </script>
 
                                     <div class="clearfix"></div>
                                 </div>
