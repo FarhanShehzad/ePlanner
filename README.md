@@ -1,2 +1,2 @@
-# AnotherEPlanner
-Plan Your Events
+# ePlanner
+ePlanner is the world's largest event technology platform. We build the technology to allow anyone to create, share, find and attend new things to do that fuel their passions and enrich their lives. Music festivals, venues, marathons, conferences, hackathons, air guitar contests, political rallies, fundraisers, gaming competitions — you name it, we power it. Our mission? To bring the world together through live experiences.
